@@ -54,8 +54,21 @@ def check_ticker(tickers : list) ->list:
             valid_tickers.append(ticker)
     return valid_tickers
 
+#ask interval for price data retrieval
+def get_interval() -> str:
+    while True:
+        valid_intervals = ['1wk', '1mo', '1y', '5y', '10y', 'Max']
+        result = input(f"To what interval should we base our estimation? {valid_intervals}:\n")
+        if result.capitalize().replace(" ","") in valid_intervals:
+            return result.capitalize().replace(" ", "")
+        else:
+            print("Invalid input. Please try again.")
+
+
 
 if __name__ == "__main__":
+    #debug section
     #print(get_tickers())
     #print(check_ticker(["MSFT","sjhd","sahjdh"]))
+    #print(get_interval())
     pass
