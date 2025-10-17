@@ -1,6 +1,7 @@
 #Python version the code is written in :
 
-
+Python 3.13.8
 
 #Below are all dependencies required by the program
 
+yfinance 0.2.66 #by Ran Aroussi and used for educational purposes. Documentation : https://ranaroussi.github.io/yfinance/
