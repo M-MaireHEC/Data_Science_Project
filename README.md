@@ -7,3 +7,8 @@ All sources used in project are cited in project and in Bibliography.md file.
 All use of artificial intelligence are cited in the project as well as in AI_USAGE.md file.  
 ---------------------------------
 
+Project creation: 17/10/2025  
+Author: Martin Maire  
+Aim: Create a multifactor model to assess under/over-pricing of stocks.   
+Challenges:  
+Limits: 
