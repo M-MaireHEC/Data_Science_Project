@@ -43,7 +43,7 @@ def get_tickers() ->list:
     return result_tickers
 
 #Checking if the ticker exists on Yahoo Finance
-def check_ticker(tickers : list):
+def check_ticker(tickers : list) ->list:
     valid_tickers = []
     for ticker in tickers:
         result = yf.Ticker(ticker).info
