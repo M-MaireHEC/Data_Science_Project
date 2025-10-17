@@ -1,6 +1,6 @@
-#Python version the code is written in :
+#Python version the code is written in : Python 3.13.8. The project is not checked for retro compatibility
 
-Python 3.13.8
+
 
 #Below are all dependencies required by the program
 
