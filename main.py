@@ -10,6 +10,7 @@ setup.check_dependencies()
 # Importing required libraries
 import yfinance as yf
 
+
 #Asking what tickers to monitor. Automatically removes duplicates and ignores case sensitivity. Allows commas, spaces or semicolons as separators.
 def get_tickers() ->list:
     result_tickers = []
@@ -57,18 +58,28 @@ def check_ticker(tickers : list) ->list:
 #ask interval for price data retrieval
 def get_interval() -> str:
     while True:
-        valid_intervals = ['1wk', '1mo', '1y', '5y', '10y', 'Max']
+        valid_intervals = ['1wk', '1mo', '1y', '5y', '10y', 'max']
         result = input(f"To what interval should we base our estimation? {valid_intervals}:\n")
-        if result.capitalize().replace(" ","") in valid_intervals:
-            return result.capitalize().replace(" ", "")
+        if result.lower().replace(" ","") in valid_intervals:
+            return result.lower().replace(" ", "")
         else:
             print("Invalid input. Please try again.")
 
-
+#Retrieve price data for the given tickers and interval
+def get_price_data(tickers:list, interval:str)-> DataFrame:
+    for ticker in tickers:
+        stock = yf.Ticker(ticker)
+        prices = stock.history(period=interval)
+        infos = stock.info
+        industry = infos.get("industry", "0")
+        print(industry)
 
 if __name__ == "__main__":
     #debug section
     #print(get_tickers())
     #print(check_ticker(["MSFT","sjhd","sahjdh"]))
     #print(get_interval())
+    #get_price_data(["MSFT"], "max")
+
+
     pass
