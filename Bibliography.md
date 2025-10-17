@@ -16,4 +16,3 @@ authors :
 - Aaron de Windt (https://stackoverflow.com/users/186964/aaron-de-windt)
 link:
 https://stackoverflow.com/questions/25389095/how-to-create-a-python-package
-test
