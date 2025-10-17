@@ -1,7 +1,7 @@
 #Python version the code is written in : Python 3.13.8. The project is not checked for retro compatibility
 
-
-
 #Below are all dependencies required by the program
 
 yfinance 0.2.66 #by Ran Aroussi and used for educational purposes. Documentation : https://ranaroussi.github.io/yfinance/
+pandas 2.3.3
+
