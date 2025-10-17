@@ -11,7 +11,7 @@ setup.check_dependencies()
 import yfinance as yf
 
 #Asking what tickers to monitor. Automatically removes duplicates and ignores case sensitivity. Allows commas, spaces or semicolons as separators.
-def get_tickers():
+def get_tickers() ->list:
     result_tickers = []
     b = True
 
@@ -42,5 +42,20 @@ def get_tickers():
 
     return result_tickers
 
+#Checking if the ticker exists on Yahoo Finance
+def check_ticker(tickers : list):
+    valid_tickers = []
+    for ticker in tickers:
+        result = yf.Ticker(ticker).info
+        if result["trailingPegRatio"] == None:
+            print("Invalid ticker:", ticker)
+            print("Ticker removed from the list.")
+        else:
+            valid_tickers.append(ticker)
+    return valid_tickers
+
+
 if __name__ == "__main__":
-    print(get_tickers())
+    #print(get_tickers())
+    #print(check_ticker(["MSFT","sjhd","sahjdh"]))
+    pass
