@@ -4,3 +4,7 @@ Below are all the sources used in the code by files.
 Requirements.txt
 ----------------
 yfinance : Use of library for data fetching. Library created and maintained by: Ran Aroussi (https://github.com/ranaroussi). Use of library falls under educational purposes as described in the library description. Documentations available at : https://ranaroussi.github.io/yfinance/
+
+---------------
+setup.py
+---------------
