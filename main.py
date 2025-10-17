@@ -72,7 +72,7 @@ def get_price_data(tickers:list, interval:str)-> DataFrame:
         prices = stock.history(period=interval)
         infos = stock.info
         industry = infos.get("industry", "0")
-        print(industry)
+
 
 if __name__ == "__main__":
     #debug section
