@@ -9,6 +9,8 @@ setup.check_dependencies()
 
 # Importing required libraries
 import yfinance as yf
+import pandas as pd
+from pathlib import Path
 
 
 #Asking what tickers to monitor. Automatically removes duplicates and ignores case sensitivity. Allows commas, spaces or semicolons as separators.
@@ -43,7 +45,7 @@ def get_tickers() ->list:
 
     return result_tickers
 
-#Checking if the ticker exists on Yahoo Finance
+#Checking if the ticker exists on Yahoo Finance. Helps avoiding unnecessary errors later on.
 def check_ticker(tickers : list) ->list:
     valid_tickers = []
     for ticker in tickers:
@@ -65,13 +67,27 @@ def get_interval() -> str:
         else:
             print("Invalid input. Please try again.")
 
-#Retrieve price data for the given tickers and interval
-def get_price_data(tickers:list, interval:str)-> DataFrame:
+#Retrieve price data for the given tickers and interval. Store in CSV files named after the ticker to avoid unnecessary repeated downloads.
+def get_price_data(tickers:list, interval:str)-> pd.DataFrame:
+    #inspired by pandas documentation : https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html
     for ticker in tickers:
+        filepath = Path(f"Data_Output/{ticker}.csv")
+        filepath.parent.mkdir(parents=True, exist_ok=True)
         stock = yf.Ticker(ticker)
         prices = stock.history(period=interval)
+        prices.to_csv(filepath)
+        return prices
+
+
+#Retrieve industry information to become factor in regression analysis.
+def get_industry(tickers: list) -> str:
+    for ticker in tickers:
+        stock = yf.Ticker(ticker)
         infos = stock.info
         industry = infos.get("industry", "0")
+        return industry
+
+
 
 
 if __name__ == "__main__":
@@ -79,7 +95,7 @@ if __name__ == "__main__":
     #print(get_tickers())
     #print(check_ticker(["MSFT","sjhd","sahjdh"]))
     #print(get_interval())
-    #get_price_data(["MSFT"], "max")
+    get_price_data(["MSFT"], "1y")
 
 
     pass
