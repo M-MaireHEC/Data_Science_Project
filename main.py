@@ -68,7 +68,8 @@ def get_interval() -> str:
             print("Invalid input. Please try again.")
 
 #Retrieve price data for the given tickers and interval. Store in CSV files named after the ticker to avoid unnecessary repeated downloads.
-def get_price_data(tickers:list, interval:str)-> pd.DataFrame:
+#Important distinction in the data retrieval. The close price is in reality the adjusted close price, which takes into account dividends and stock splits. This was checked by comparing adjusted close price on Yahoo Finance website and the close price retrieved by yfinance library.
+def get_price_data(tickers:list, interval:str)-> None:
     #inspired by pandas documentation : https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html
     for ticker in tickers:
         filepath = Path(f"Data_Output/{ticker}.csv")
@@ -76,7 +77,22 @@ def get_price_data(tickers:list, interval:str)-> pd.DataFrame:
         stock = yf.Ticker(ticker)
         prices = stock.history(period=interval)
         prices.to_csv(filepath)
-        return prices
+
+#Opens required csv files and calculates returns based over adjusted closing prices.
+def calculate_return_close(tickers:list) -> None:
+    for ticker in tickers:
+        filepath = Path(f"Data_Output/{ticker}.csv")
+        prices = pd.read_csv(filepath)
+        prices['Return'] = prices['Close'].pct_change()
+        prices.to_csv(filepath, index=False)
+
+#Return daily volatility over the period as standard deviation of returns.
+def calculate_volatility(tickers:list) -> int:
+    for ticker in tickers:
+        filepath = Path(f"Data_Output/{ticker}.csv")
+        prices = pd.read_csv(filepath)
+        volatility = prices['Return'].std()
+        return(volatility)
 
 
 #Retrieve industry information to become factor in regression analysis.
@@ -95,7 +111,7 @@ if __name__ == "__main__":
     #print(get_tickers())
     #print(check_ticker(["MSFT","sjhd","sahjdh"]))
     #print(get_interval())
-    get_price_data(["MSFT"], "1y")
+    print(calculate_volatility(["MSFT"]))
 
 
     pass
