@@ -16,3 +16,12 @@ authors :
 - Aaron de Windt (https://stackoverflow.com/users/186964/aaron-de-windt)
 link:
 https://stackoverflow.com/questions/25389095/how-to-create-a-python-package
+
+----------------
+main.py
+----------------
+
+Overall file using library documentation and examples.
+
+get_price_data function:
+- Used pandas documentation and example to output dataframe received by yfinance package into a csv file in special directory using pathlib.
