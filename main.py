@@ -103,6 +103,12 @@ def get_industry(tickers: list) -> str:
         industry = infos.get("industry", "0")
         return industry
 
+def get_earnings_history(tickers: list) -> pd.DataFrame:
+    for ticker in tickers:
+        stock = yf.Ticker(ticker)
+        earnings = stock.earnings_history
+    return earnings
+
 
 
 
@@ -111,7 +117,7 @@ if __name__ == "__main__":
     #print(get_tickers())
     #print(check_ticker(["MSFT","sjhd","sahjdh"]))
     #print(get_interval())
-    print(calculate_volatility(["MSFT"]))
+    print(get_earnings_history(["MSFT"]))
 
 
     pass
