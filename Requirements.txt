@@ -4,5 +4,5 @@
 
 yfinance 0.2.66 #by Ran Aroussi and used for educational purposes. Documentation : https://ranaroussi.github.io/yfinance/
 pandas 2.3.3
-
+numpy
 
