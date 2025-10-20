@@ -39,7 +39,7 @@ def check_dependencies():
             if pkg.version != version:
                 print(f"Version mismatch for {name}: installed {pkg.version}, required {version}. Installing correct version...")
                 #installing the correct version according to the best methods described in StackOverflow post : https://stackoverflow.com/questions/12332975/how-can-i-install-a-python-module-with-pip-programmatically-from-my-code
-                subprocess.check_call([sys.executable, "-","pip", "install", "--upgrade", f"{name}=={version}"])
+                subprocess.check_call([sys.executable, "-m","pip", "install",f"{name}=={version}", "--upgrade" ])
 
             # correct version already installed
             else:
