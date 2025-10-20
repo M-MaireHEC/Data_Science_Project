@@ -112,8 +112,11 @@ def get_earnings_history(tickers: list) -> pd.DataFrame:
 
 #Get S&P500 data that is considered as "market" for CAPM
 def get_market_data(interval:str) -> None:
-    market = ["^GSPC"]
+    market = ["SPX"]
     get_price_data(market, interval)
+
+def get_small_medium_large_data(interval:str) -> None:
+    market = ["^SP600", "^MID", "^GSPC" ]
 
 
 
@@ -124,8 +127,8 @@ if __name__ == "__main__":
     #print(get_tickers())
     #print(check_ticker(["MSFT","sjhd","sahjdh"]))
     #print(get_interval())
-    print(get_earnings_history(["MSFT"]))
-    get_market_data("max")
+    #print(get_earnings_history(["MSFT"]))
+    #get_market_data("max")
 
 
     pass
