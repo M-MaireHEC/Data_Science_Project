@@ -115,8 +115,10 @@ def get_market_data(interval:str) -> None:
     market = ["SPX"]
     get_price_data(market, interval)
 
+#Get all caps S&P 500 for multifactor model
 def get_small_medium_large_data(interval:str) -> None:
     market = ["^SP600", "^MID", "^GSPC" ]
+    get_price_data(market)
 
 
 
