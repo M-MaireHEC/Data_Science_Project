@@ -122,6 +122,11 @@ def get_small_medium_large_data(interval:str) -> None:
     market = ["^SP600", "^MID", "^GSPC" ]
     get_price_data(market)
 
+#Using T-bills 5 years as risk-free rate. Warning yield is expressed as integer --> 3 == 3%. Need to devide by 100 then remove from daily returns
+def get_risk_free_historical(interval:str)-> None:
+    risk_free = ["^FVX"]
+    get_price_data(risk_free)
+
 #get the number of columns the row matrix has. Return 0 in case of multiple lengths and not a matrix.
 def get_columns(matrix:list)-> int:
     checker = None
