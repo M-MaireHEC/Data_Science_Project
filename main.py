@@ -106,6 +106,7 @@ def get_industry(tickers: list) -> str:
         industry = infos.get("industry", "0")
         return industry
 
+#Not needed, kept in case
 def get_earnings_history(tickers: list) -> pd.DataFrame:
     for ticker in tickers:
         stock = yf.Ticker(ticker)
