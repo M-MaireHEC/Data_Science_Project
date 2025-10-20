@@ -58,6 +58,8 @@ def check_ticker(tickers : list) ->list:
             valid_tickers.append(ticker)
     return valid_tickers
 
+
+
 #ask interval for price data retrieval
 def get_interval() -> str:
     while True:
@@ -120,6 +122,59 @@ def get_small_medium_large_data(interval:str) -> None:
     market = ["^SP600", "^MID", "^GSPC" ]
     get_price_data(market)
 
+#get the number of columns the row matrix has. Return 0 in case of multiple lengths and not a matrix.
+def get_columns(matrix:list)-> int:
+    checker = None
+    for row in matrix:
+        if checker == None:
+            checker = len(row)
+        elif len(row) == checker:
+            continue
+        else:
+            return 0
+    return checker
+
+# get the number of rows the matrix has
+def get_rows(matrix:list)-> int:
+    return len(matrix)
+
+#Check whether the two given matrices can be multiplied.
+def check_multiplication(matrix1 :list, matrix2:list) ->bool:
+    #[[1,2],[1,3],[2,3]] -> 3x2
+    #[[1,2,3],[1,0,3]] -> 2x3
+    #checking dimensions
+    #rows
+    m2_rows = get_rows(matrix2)
+
+    #columns
+    m1_column = get_columns(matrix1)
+    m2_column = get_columns(matrix2)
+
+    #multiplicability check
+    if (m1_column == m2_rows) and m2_column != 0:
+        return True
+    else:
+        return False
+
+#create matrices to do tests full of 1s
+def matrix_builder(rows:int = 1, columns:int = 1)-> list:
+    #avoid output nothing
+    if rows < 1:
+        rows = 1
+    if columns < 1:
+        columns = 1
+
+    matrix = []
+    row = []
+    count = 0
+    while count < columns:
+        row.append(1)
+        count += 1
+    count = 0
+    while count < rows:
+        matrix.append(row)
+        count+=1
+    return matrix
 
 
 
@@ -131,6 +186,14 @@ if __name__ == "__main__":
     #print(get_interval())
     #print(get_earnings_history(["MSFT"]))
     #get_market_data("max")
+    #m1 = matrix_builder(2,4)
+    #print(m1)
+    #m2 = matrix_builder(4,3)
+    #print(m2)
+    #print(check_multiplication(m1,m1))
+    #print(check_multiplication(m1,m2))
+    #print(check_multiplication(m2,m1))
+    #print(m1,get_rows(m1),get_columns(m1))
 
 
     pass
