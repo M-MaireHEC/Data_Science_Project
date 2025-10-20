@@ -11,6 +11,7 @@ setup.check_dependencies()
 import yfinance as yf
 import pandas as pd
 from pathlib import Path
+import numpy as np
 
 
 #Asking what tickers to monitor. Automatically removes duplicates and ignores case sensitivity. Allows commas, spaces or semicolons as separators.
@@ -109,6 +110,12 @@ def get_earnings_history(tickers: list) -> pd.DataFrame:
         earnings = stock.earnings_history
     return earnings
 
+#Get S&P500 data that is considered as "market" for CAPM
+def get_market_data(interval:str) -> None:
+    market = ["^GSPC"]
+    get_price_data(market, interval)
+
+
 
 
 
@@ -118,6 +125,7 @@ if __name__ == "__main__":
     #print(check_ticker(["MSFT","sjhd","sahjdh"]))
     #print(get_interval())
     print(get_earnings_history(["MSFT"]))
+    get_market_data("max")
 
 
     pass
